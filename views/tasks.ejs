@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      <div id = "container">
+          <h1>TaskList</h1> 
+          <form action='/tasks' method='post'>
+            <p>
+              <input class = "addInput" type='text' name='text' placeholder='Add task' />
+            </p>
+            <p>
+              <input class = "addBtn" type='submit' value='Add' />
+            </p>
+          </form>
+          <% tasks.forEach( (item) => {%>
+                
+            <ul>
+              <li><%= item.body%></li>
+            </ul>
+            <% }) %>
+      </div>
+  </body>
+</html>
