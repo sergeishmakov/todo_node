@@ -1,31 +1,33 @@
-const modelMethods = require("../controllers/task");
+const TasksController = require("../controllers/tasksController");
 
 exports.list = (req, res) => {
-  Task.all((err, tasks) => {
-    if (err) return next(err);
-    // res.render("tasks", { tasks: tasks.rows });
-    res.json(tasks.rows);
+  TasksController.all(items => {
+    res.json(items);
   });
 };
 
 exports.submit = (req, res, next) => {
   const data = req.body;
-  console.log(data);
-  modelMethods.add(data, (err, task) => {
-    res.json(task.rows);
+
+  TasksController.create(data, item => {
+    res.json(item);
   });
 };
 
 exports.update = (req, res) => {
   let data = req.body;
-  Task.update(data, (err, task) => {
-    res.json(task);
+
+
+  TasksController.update(data, item => {
+
+    res.json(item);
   });
 };
 
 exports.delete = (req, res) => {
-  let id = req.params.id;
-  Task.delete(id, (err, item) => {
+  let id = Number(req.params.id);
+  TasksController.delete(id, item => {
+
     res.json(item);
   });
 };
